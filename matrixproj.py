@@ -1,10 +1,6 @@
 import random
 
-start_matrix = [
-    # [1, 2, 3],
-    # [4, 5, 6],
-    # [7, 8, 9],
-]
+
 
 
 
@@ -12,6 +8,21 @@ def matrix(mat):
     res = []
     while len(mat):
         res += mat.pop(0)
+        if  len(mat) == 0:
+            return res
+        mat = transporation(mat)[::-1]
+    return res
+
+
+def transporation(mat):
+    res = []
+    for i in range(len(mat[0])):
+        rows = []
+        for j in range(len(mat)):
+            rows.append(mat[j][i])
+        res.append(rows)
+    return res
+
 
 
 def show_matrix(mat):
@@ -31,6 +42,7 @@ def hand_matrix(size):
 def rand_matrix(size):
     return [[random.randint(0,9) for j in range(size)] for i in range(size)]
 
+
 size = int(input("Enter the size of the matrix: "))
 print()
 print("1 - Hand matrix")
@@ -38,10 +50,19 @@ print("2 - Random matrix")
 choice = str(input("Enter your choice: "))
 if choice == "1":
     start_matrix = hand_matrix(size)
+    show_matrix(start_matrix)
+    print()
+    snail = matrix(start_matrix)
+    print(snail)
 elif choice == "2":
     start_matrix = rand_matrix(size)
+    show_matrix(start_matrix)
+    print()
+    snail = matrix(start_matrix)
+    print(snail)
 else:
     print("Invalid choice")
 
-show_matrix(start_matrix)
+
+
 #Какок размер, рандом или нет(две функции), функция показать матрицу , красивое меню
